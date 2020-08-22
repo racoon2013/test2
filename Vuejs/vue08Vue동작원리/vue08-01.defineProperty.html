@@ -39,7 +39,7 @@
     <pre>
       Vue 를 이용하여 #app1 의 {{msg}} 에 "Hello" 를 출력한다.
       Vue 의 인스턴스 명은 vm1 으로 만드시오. var vm1 = new Vue();
-      예제) vue03-03.hello-vue.html 을 참조. 
+      예제) vue06-03.hello-vue.html 을 참조. 
     </pre>
     <div id="app">
         <h2>{{msg}}</h2>
@@ -61,4 +61,45 @@
 
 </html>
 
+
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+
+    //Vue를 이용하여 #app의 {{msg}} 부분에 "Hello" 를 출력하라.
+    var vm1 = new Vue({
+        el: "#app",
+        data: {
+            msg: "hello",
+        }
+    });
+
+
+    /*
+        #app2 에 Object.defineProperty() 메서드의 get, set 설정하고
+      "123" 을 출력한다.
+
+      document.getElementById() 를 사용하여 #app2 엘리먼트를 찾는다.
+
+      엘리먼트의 innerHTML 또는 innerText 프러퍼티 사용.
+    */
+    var div = document.getElementById("app2");
+
+    // var data = {
+    //     msg : "Hello"
+    // }
+
+    var data = {};
+    Object.defineProperty(data, "msg", {
+        get: function () {           // 데이터 기준으로 가져옮
+            return div.innerHTML;
+        },
+        set: function (val) {       //데이터 기준으로 
+            div.innerHTML = val;
+        }
+    });
+
+    debugger;
+    data["msg"] = "123";
+    data["msg"] = "abc";
+</script>

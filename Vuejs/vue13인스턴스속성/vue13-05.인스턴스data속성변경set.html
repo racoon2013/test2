@@ -58,8 +58,10 @@
     </pre>
     <hr>
     <div id="app">
-        <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span>
+        <!---                     -->
+        <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span> <!-- v- 지시자   /  v-on  클릭 이벤트-->
         <br>
+        <!-------    클릭 할때 ----->
         <button v-on:click="change1">방법1로 변경</button>
         <button v-on:click="change2">방법2로 변경</button>
         <button v-on:click="change3">방법3로 변경</button>
@@ -70,3 +72,42 @@
 </html>
 
 <!-- vue 스크립트 플러그인 임포트 -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            arr: [1, 2, 3, 4, 5]
+        },
+
+        methods: {
+            change1: function (event) {
+                //   (1) [100, 2, 3, 4, 5]    <== 방법1을 적용
+                // Vue.set( 변수명, 방번호, 바꿀값)
+                Vue.set(this.$data.arr, 0, 100);
+                console.log("change1");
+            },
+            change2: function (event) {
+                //  (2) [100, 300, 3, 4, 5]  <== 방법2을 적용
+                // Vue.set( 변수명, 방번호, 바꿀값)
+
+                this.$set(this.$data.arr, 1, 300);  //this(내) .(메소드) set을 호출해라 
+                console.log("change2");
+            },
+            change3: function (event) {
+                //  (3) [500, 3, 4, 5]       <== 방법3을 적용
+                // this.arr.splice(0,1,500);
+                //Vue.set(this.arr.splice(0, 2, 500));    // 0~ 2번 전까지   이것도 되는뎅~? 왜 뷰셋 안쓰지? 
+                this.arr.splice(0, 2, 500);    // 0~ 2번 전까지  
+                console.log("change3");
+            },
+            change4: function (event) {
+                // (4) [500, 3, 4, 5, 70]   <== 방법4을 적용
+                Vue.set(this.$data.arr, this.$data.arr.length, 70);
+                // ...this.arr ==> 500, 3, 4, 5
+                // var arr_copy = 
+                console.log("change4");
+            },
+        }
+    })    
+</script>

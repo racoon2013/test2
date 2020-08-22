@@ -35,3 +35,25 @@
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#my",
+        data: {
+            message: "change message at mounted",
+        },
+        methods: {
+            doClick: function (event) {
+                //   (1) [100, 2, 3, 4, 5]    <== 방법1을 적용
+                // Vue.set( 변수명, 방번호, 바꿀값)
+                // Vue.set(this.$data.message."change message when a button clicked!!!");
+                this.data.message = "change message when a button clicked!!!"
+                console.log("change1");
+
+            },
+
+        }
+    })
+
+
+</script>
