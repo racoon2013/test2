@@ -37,23 +37,32 @@
 <!-- vue 스크립트 플러그인 임포트   -->
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
 <script>
-    new Vue({
+    var vm = new Vue({         //vm 은 인스턴스
         el: "#my",
         data: {
-            message: "change message at mounted",
+            message: "aaa",
         },
         methods: {
             doClick: function (event) {
                 //   (1) [100, 2, 3, 4, 5]    <== 방법1을 적용
                 // Vue.set( 변수명, 방번호, 바꿀값)
                 // Vue.set(this.$data.message."change message when a button clicked!!!");
-                this.data.message = "change message when a button clicked!!!"
+                var timeCurrent = new Date().toLocaleTimeString();
+                this.$data.message = "change message when a button clicked!!! + " + timeCurrent;
                 console.log("change1");
-
             },
 
-        }
-    })
-
+        },
+        mounted: function (e) {
+            this.$data.message = "change message at mounted!!!";
+        },
+    });
+    window.setTimeout(function () {
+        vm.$data.message = "3초";
+    }, 3000);  //3000ms = 3s
+    //this는 안에서 바꿈
+    window.setTimeout(function () {
+        vm.$data.message = "5초";
+    }, 5000);  //3000ms = 3s
 
 </script>

@@ -36,7 +36,10 @@
     }
     2. 버튼을 클릭할 때마다 전역 컴포넌트를 추가하시오.
 
-    [참조]page 104
+    [참조]
+    1. page 104
+    2. "vue13-05.인스턴스data속성변경set" 예제
+  
     </xmp>
     <hr>
 
@@ -48,7 +51,7 @@
         </p>
         <p>
             <b v-for="(val, i) in arr" v-bind:key="i">
-                <component-box v-bind:num="val"></component-box>
+                <component-box v-bind:num="val"></component-box>                
             </b>
         </p>
     </div>
@@ -59,4 +62,43 @@
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script> 
 
+    // 컴포넌트 만들기
+    Vue.component("component-box", {
+        /* pdtmc^2w */
+        props: [ "num" ],
+        data: function(){
+            return {
+                style1 : {
+                    display: "inline-block",
+                    fontSize: "3em",
+                    border: "1px dashed blue",
+                    padding: "10px 20px",
+                    margin: "5px",
+                    textAlign:"center",
+                }
+            }
+        },
+        template: `
+            <span v-bind:style="style1">{{ num }}</span>
+        `,
+    });
+
+    
+    // 인스턴스 만들기
+    new Vue({
+        el:"#app",
+        data: {
+            arr: [1,2,3,4,5],
+        },
+        methods: {
+            clickAddBox: function(event){
+                console.log("clickAddBox");
+                Vue.set( this.$data.arr, this.$data.arr.length, this.$data.arr.length+1);
+            }
+        }
+    })
+
+</script>

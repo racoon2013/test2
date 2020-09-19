@@ -10,11 +10,13 @@
         body {
             background-color: lightgrey;
         }
-        body > * {
+f
+        body>* {
             text-align: center;
             vertical-align: middle;
             line-height: 2em;
         }
+
         p {
             top: 50%;
             text-align: center;
@@ -23,7 +25,7 @@
 
         header {
             background-color: orange;
-            margin: 10px 0 ;
+            margin: 10px 0;
             width: 100%;
             height: 60px;
         }
@@ -31,23 +33,25 @@
         /* <div id="content-list"> */
         #content {
             background-color: white;
-            margin: 0 0 30px 0 ;
+            margin: 0 0 30px 0;
         }
 
         aside {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             height: 200px;
             float: left;
         }
+
         #content-list {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             float: right;
             height: 200px;
         }
+
         #content::after {
             clear: both;
             display: block;
@@ -55,7 +59,7 @@
         }
 
         footer {
-            margin: 10px 0 ;
+            margin: 10px 0;
             background-color: lightblue;
             width: 100%;
             height: 50px;
@@ -65,23 +69,88 @@
 </head>
 
 <body>
-    <header>
-        Header
-    </header>
-    <div id="content">
-        <p>Content</p>
-        <aside>
-            Aside
-        </aside>
-        <div id="content-list">
-            List
+
+    <div id="app">
+
+        <num-component></num-component>
+        <content-component></content-component>
+        </footer-component>
+        </footer-componentL>
+        <div id="content">
+            <p>Content</p>
+
+            <div id="content-list">
+                List
+            </div>
         </div>
     </div>
-    <footer>
-        Footer
-    </footer>
+
+
 </body>
+
+
+
+<!--<component-box v-bind:num="val"></component-box>   -->
+
 
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+
+    Vue.component('num-component', {
+        template: '<div> header </div>',
+
+    });
+    Vue.component('footer-component', {
+        template: '<div> footer </div>',
+
+    });
+
+    Vue.component('content-component', {
+        template: '<div> content </div>',
+
+    });
+
+    Vue.component("num", {
+        // pdtmc^2w
+        props: ["num"],
+        data: function () {
+            return {}
+        },
+        template: `
+        <aside>
+                Aside
+            </aside>
+        
+        `,
+        methods: {
+
+        },
+
+        component: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+
+    });
+
+    new Vue({
+        el: "#app",
+        data: {},
+        template: null,
+        methods: {},
+        component: {},
+        computed: {},
+
+    })
+
+
+
+</script>

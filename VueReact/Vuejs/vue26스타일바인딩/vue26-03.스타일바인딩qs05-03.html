@@ -27,33 +27,33 @@
 <body>
     <xmp>
         javascript에서 style 프로퍼티 설정 방식과 설정시의 주의 사항을 학습한다.
-          1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
-            예시) 케밥 표기법 ==> 카멜 표기법
-            font-size ==> fontSize
-            backgroundColor ==> backgroundColor
+        1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
+        예시) 케밥 표기법 ==> 카멜 표기법
+        font-size ==> fontSize
+        backgroundColor ==> backgroundColor
 
-          2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
-            {
-                background-color: yellow;
-                font-size :  12pt;
-            }
-            ==>
-            {
-                backgroundColor: "yellow",
-                fontSize :  "12pt",
-            }
+        2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
+        {
+        background-color: yellow;
+        font-size : 12pt;
+        }
+        ==>
+        {
+        backgroundColor: "yellow",
+        fontSize : "12pt",
+        }
 
         도전1. Vue.js 를 사용하여 "==>"를 클릭하면 TO-BE 박스에 아래의
-               style 속성을 적용하여 AS-IS 처럼 만드시오.
-          height: 50px;
-          width: 150px;
-          border: 1px solid black;
-          text-align: center;
-          line-height: 50px;
-          font-weight: 800;
-          color: red;
-          background-color: darkgoldenrod;
-          padding: 50px;
+        style 속성을 적용하여 AS-IS 처럼 만드시오.
+        height: 50px;
+        width: 150px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 800;
+        color: red;
+        background-color: darkgoldenrod;
+        padding: 50px;
     </xmp>
     <style>
         #example3>* {
@@ -131,3 +131,80 @@
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+
+<script>
+    /*
+    1. 인스턴스 만들기
+    */
+    new Vue({
+        el: "#example3",
+        data: {
+            style1: null
+            /*      
+                  height: 50px;
+                  width: 150px;
+                  border: 1px solid black;
+                  text-align: center;
+                  line-height: 50px;
+                  font-weight: 800;
+                  color: red;
+                  background-color: darkgoldenrod;
+                  padding: 50px;       
+        */
+
+
+        },
+        template: null,
+        methods: {
+            clickArrow: function (event) {
+                console.log("clickArrow");
+
+                this.$data.style1 = {
+                    height: "50px",
+                    width: "150px",
+                    border: "1px solid black",
+                    textAlign: "center",
+                    lineHeight: "50px",
+                    fontWeight: "800",
+                    color: "red",
+                    backgroundColor: "darkgoldenrod",
+                    padding: "50px",
+                }
+            }
+        },
+        component: {},
+        computed: {},
+
+
+    })
+    var vm = new Vue({
+        el: "#elvue",
+        data: { style1: null },
+        template: null,
+        methods: {
+            overEvent: function (event) {
+                console.log("clickEvent");
+                this.$data.style1 = {
+                    backgroundColor: "purple",
+                    color: "yellow",
+                }
+
+            },
+            outEvent: function (event) {
+                console.log("outEvent");
+                this.$data.style1 = {
+                    backgroundColor: "black",
+                    color: "yellow",
+                }
+            }
+        },
+
+
+        component: {},
+        computed: {},
+        watch: {
+        },
+    })
+
+</script>

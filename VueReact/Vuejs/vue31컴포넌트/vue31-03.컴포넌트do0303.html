@@ -52,3 +52,77 @@
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+
+    Vue.component("global-component", {
+        // pdtmc^2w
+        props: ["propsdata"],
+        data: function () {
+            return {}
+        },
+        template: `
+            <div> 전역 컴포넌트 {{propsdata}}</div>
+
+        `,
+        methods: {
+
+        },
+
+        componnents: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+
+    });
+
+    var localComponent = {
+
+        props: ["localmsg"],
+        data: function () {
+            return {}
+        },
+        template: `
+            <div> 지역  컴포넌트 :: {{localmsg}}</div>
+
+        `,
+        methods: {
+
+        },
+
+        componnents: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+
+
+    }
+
+    new Vue({
+        el: "#app",
+        data: {
+            globalmsg1: "메세지 1",
+            globalmsg2: "메세지 2",
+            localmsg1: "지역 메세지 1",
+            localmsg2: "지역 메세지 2",
+        },
+        template: null,
+        methods: {},
+        component: {
+            "local-component": localComponent,
+        },
+        
+        computed: {},
+    })
+
+</script>
