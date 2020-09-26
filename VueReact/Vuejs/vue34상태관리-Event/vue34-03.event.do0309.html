@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../css/reset.css">
 
 </head>
+
 <body>
     <pre>
 
@@ -27,15 +29,63 @@
           이벤트 버스를 사용하여 주고 받는다.
 
       [참조]page 62~75
+      <hr>
+      1. child-component 컴포넌트 만들기 pdtmc^2w 설정
+      2. child-component 컴포넌트 템플릿에는
+        <div>
+            <button v-on:click="showLog">show</button>
+        </div>
+     3. 버튼을 클릭하면
     </pre>
 
-      <img src="../images/components_parent_child.png" alt="" srcset="">
+    <img src="../images/components_parent_child.png" alt="" srcset="">
     <hr>
     <div id="app">
         <child-component v-on:show-log="printText"></child-component>
     </div>
 
 </body>
+
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    Vue.component("chiled-component", {
+
+        props: [],
+        data: function () { return {} },
+        template: `
+        <div>
+            <button v-on:click="showLog">show</button>
+        </div>
+        `,
+        methods: {
+            showLog: function () {
+                // show-log 라는 사용자 이벤트를 발생시키고
+                // "abc" 와 123을 이벤트로 전달 하시오.
+                this.$emit("show-log", "abc", 123, 'kkk');
+            }
+        },
+    })
+    new Vue({
+        //edtmc^2w
+        el: '#app',
+        data: {},
+        template: null,
+        methods: {
+            //사용자 이벤트 핸들러
+            printText: function (arg1, arg2) {
+                console.log("printText", arg1, arg2);
+                console.log("printText", arguments);
+
+            }
+        },
+        components: {},
+        computed: {},
+        watch: {},
+
+
+
+    })
+</script>

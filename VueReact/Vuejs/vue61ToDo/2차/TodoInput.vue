@@ -131,8 +131,16 @@ export default {
     },
     methods: {
         addTodo() {
+            if (this.newTodoItem !== "") {
+                var value = this.newTodoItem && this.newTodoItem.trim();
+                this.$emit("addTodo", value);
+                this.clearInput();
+            } else {
+                this.showModal = !this.showModal;
+            }
         },
         clearInput() {
+            this.newTodoItem = "";
         }
     },
     components: {}

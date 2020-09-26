@@ -51,20 +51,29 @@
 <!-- vue 스크립트 플러그인 임포트 -->
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
 <script>
-    var model = {
-        message = 'Hello, Vue.js!',
-    }
-    new Vue({
-        el: "#app",
-        data: {
-            message: model,
-        }
-    })
+    var shared = {
+        message = "Hello, Vue.js!",
+    };
 
-    new Vue({
+    // edtmc^2w
+    var vm1 = new Vue({
+        el: "#app",
+        data: shared,
+        template: "",
+        methods: {},
+        computed: {},
+        component: {},
+        watch: {},
+    });
+
+    //edtmc^2w
+    var vm2 = new Vue({
         el: "#app2",
-        data: {
-            message: model,
-        })
-        ////////// 수정하기 !!!!!!!!!!!
+        data: shared,
+        template: "",
+        methods: {},
+        computed: {},
+        components: {},
+        watch: {},
+    });
 </script>

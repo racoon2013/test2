@@ -11,7 +11,7 @@
 
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
-	
+
 </head>
 
 <body>
@@ -52,12 +52,68 @@
         <h1>{{header}}</h1>
         <h2>{{welcome}}</h2>
         <h3>{{counter}}</h3>
-        <button v-on:click="increment">나를 눌러줘</button>
+        <button v-on:click="increment">더샘 눌러줘</button>
+        <button v-on:click="decrement">빼기 눌러줘</button>
+
     </div>
 </body>
 
 </html>
 
-<!-- vue 스크립트 플러그인 임포트 -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
 
+<script>
+    const store = new Vuex.Store({
+        // ...
+        actions: {
+            increment: function (mutations, value) {
+                mutations.commit("increment", value)
+            },
+            decrement: function (mutations, value) {
+                mutations.commit("increment", value)
+            }
+        },
+        mutations: {
+            increment: function (state, value) {
+                state.counter = state.counter + value;
+            },
+            decrement: function (state, value) {
+                state.counter = state.counter - value;
+            }
+        },
+        state: {
+            counter: 0,
+        },
+        getters: {
+            counter: function (state) {
+                return state.counter;
+            }
+        },
+    })
+    new Vue({
+        //edtmc^2
+        el: "#app",
+        data: {
+            header: "vuex 사용 앱",
+            welcome: "Hello World",
+            //   counter: 0
+        },
+        methods: {
+            increment: function (event) {
+                // this.$data.counter = this.$data.counter + 1;
+                store.dispatch("increment", 1);
+            },
+            decrement: function (event) {
+                // this.$data.counter = this.$data.counter + 1;
+                store.dispatch("decrement", -1);
+            },
+        },
+        computed: {
+            counter: function () {
+                return store.getters.counter;
+            }
+        }
+    });
 
+</script>

@@ -1,27 +1,30 @@
 <style scoped>
 body {
-    text-align: center;
-    background-color: #f6f6f8;
+  text-align: center;
+  background-color: #f6f6f8;
 }
 input {
-    border-style: groove;
-    width: 200px;
+  border-style: groove;
+  width: 200px;
 }
 button {
-    border-style: groove;
+  border-style: groove;
 }
 .shadow {
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
 }
 </style>
 
 <template>
-    <div id="app">
-        <TodoHeader></TodoHeader>
-        <TodoInput v-on:addTodo="addTodo"></TodoInput>
-        <TodoList v-bind:propsdata="todoItems" v-on:removeTodo="removeTodo"></TodoList>
-        <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
-    </div>
+  <div id="app">
+    <TodoHeader></TodoHeader>
+    <TodoInput v-on:addTodo="addTodo"></TodoInput>
+    <TodoList
+      v-bind:propsdata="todoItems"
+      v-on:removeTodo="removeTodo"
+    ></TodoList>
+    <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
+  </div>
 </template>
 
 <script>
@@ -31,37 +34,37 @@ import TodoList from "@/components/todo/TodoList.vue";
 import TodoFooter from "@/components/todo/TodoFooter.vue";
 
 export default {
-    data() {
-        return {
-            todoItems: []
-        };
+  data() {
+    return {
+      todoItems: [],
+    };
+  },
+  methods: {
+    clearAll() {
+      localStorage.clear();
+      this.todoItems = [];
     },
-    methods: {
-        clearAll() {
-            localStorage.clear();
-            this.todoItems = [];
-        },
-        addTodo(todoItem) {
-            localStorage.setItem(todoItem, todoItem);
-            this.todoItems.push(todoItem);
-        },
-        removeTodo(todoItem, index) {
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);
-        }
+    addTodo(todoItem) {
+      localStorage.setItem(todoItem, todoItem);
+      this.todoItems.push(todoItem);
     },
-    created() {
-        if (localStorage.length > 0) {
-            for (var i = 0; i < localStorage.length; i++) {
-                this.todoItems.push(localStorage.key(i));
-            }
-        }
+    removeTodo(todoItem, index) {
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
     },
-    components: {
-        TodoHeader: TodoHeader,
-        TodoInput: TodoInput,
-        TodoList: TodoList,
-        TodoFooter: TodoFooter
+  },
+  created() {
+    if (localStorage.length > 0) {
+      for (var i = 0; i < localStorage.length; i++) {
+        this.todoItems.push(localStorage.key(i));
+      }
     }
+  },
+  components: {
+    TodoHeader: TodoHeader,
+    TodoInput: TodoInput,
+    TodoList: TodoList,
+    TodoFooter: TodoFooter,
+  },
 };
 </script>
